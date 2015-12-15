@@ -1,0 +1,67 @@
+NUGET
+  remote: https://nuget.org/api/v2
+  specs:
+    Deedle (1.2.4)
+    Deedle.RPlugin (1.2.4)
+      Deedle (>= 1.2.4)
+      R.NET.Community (>= 1.6.4)
+      R.NET.Community.FSharp (>= 1.6.4)
+      RProvider (>= 1.1.13)
+    DynamicInterop (0.7.4)
+    Foogle.Charts (0.0.5)
+    FSharp.Charting (0.90.13)
+    FSharp.Core (4.0.0.1)
+    FSharp.Data (2.2.5)
+      Zlib.Portable (>= 1.10.0) - framework: portable-net40+sl50+wp80+win80
+    FsLab (0.3.10)
+      Deedle (1.2.4)
+      Deedle.RPlugin (1.2.4)
+      Foogle.Charts (0.0.5)
+      FSharp.Charting (0.90.13)
+      FSharp.Data (2.2.5)
+      Google.DataTable.Net.Wrapper (3.1.2.0)
+      MathNet.Numerics (3.8.0)
+      MathNet.Numerics.FSharp (3.8.0)
+      Newtonsoft.Json (7.0.1)
+      R.NET.Community (1.6.4)
+      R.NET.Community.FSharp (1.6.4)
+      RProvider (1.1.15)
+      XPlot.GoogleCharts (1.2.2)
+      XPlot.GoogleCharts.Deedle (1.2.2)
+      XPlot.Plotly (1.2.2)
+    Google.DataTable.Net.Wrapper (3.1.2.0)
+    Http.fs (1.5.1)
+    MathNet.Numerics (3.8.0)
+      TaskParallelLibrary (>= 1.0.2856.0) - framework: net35
+    MathNet.Numerics.FSharp (3.8.0)
+      FSharp.Core (>= 3.1.2.5)
+      MathNet.Numerics (3.8.0)
+    Newtonsoft.Json (7.0.1)
+    R.NET.Community (1.6.4)
+      DynamicInterop (0.7.4)
+    R.NET.Community.FSharp (1.6.4)
+      R.NET.Community (>= 1.6.4)
+    RProvider (1.1.15)
+      DynamicInterop (0.7.4)
+      R.NET.Community (1.6.4)
+      R.NET.Community.FSharp (1.6.4)
+    Suave (0.33.0)
+      FSharp.Core (>= 3.1.2.5)
+    TaskParallelLibrary (1.0.2856) - framework: net35
+    XPlot.GoogleCharts (1.2.2)
+      Google.DataTable.Net.Wrapper
+      Newtonsoft.Json
+    XPlot.GoogleCharts.Deedle (1.2.2)
+      Deedle
+      XPlot.GoogleCharts (>= 1.2.2)
+    XPlot.Plotly (1.2.2)
+      Http.fs
+      Newtonsoft.Json
+    Zlib.Portable (1.11.0) - framework: portable-net40+sl50+wp80+win80
+GITHUB
+  remote: evelinag/ffplot
+  specs:
+    ggplot.fs (ae2aee5ce08aee4ce95c071737aa31480dbd423c)
+      Deedle
+      Deedle.RPlugin
+      RProvider

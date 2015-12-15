@@ -1,0 +1,466 @@
+{
+  "nodes": [
+    {
+      "name": "R2-D2",
+      "value": 31,
+      "colour": "#bde0f6"
+    },
+    {
+      "name": "ANAKIN",
+      "value": 54,
+      "colour": "#ce3b59"
+    },
+    {
+      "name": "OBI-WAN",
+      "value": 60,
+      "colour": "#48D1CC"
+    },
+    {
+      "name": "ODD BALL",
+      "value": 5,
+      "colour": "#808080"
+    },
+    {
+      "name": "GENERAL GRIEVOUS",
+      "value": 13,
+      "colour": "#808080"
+    },
+    {
+      "name": "EMPEROR",
+      "value": 25,
+      "colour": "#191970"
+    },
+    {
+      "name": "COUNT DOOKU",
+      "value": 3,
+      "colour": "#808080"
+    },
+    {
+      "name": "BAIL ORGANA",
+      "value": 21,
+      "colour": "#808080"
+    },
+    {
+      "name": "C-3PO",
+      "value": 16,
+      "colour": "#FFD700"
+    },
+    {
+      "name": "PADME",
+      "value": 24,
+      "colour": "#DDA0DD"
+    },
+    {
+      "name": "YODA",
+      "value": 24,
+      "colour": "#9ACD32"
+    },
+    {
+      "name": "FANG ZAR",
+      "value": 4,
+      "colour": "#808080"
+    },
+    {
+      "name": "MON MOTHMA",
+      "value": 4,
+      "colour": "#808080"
+    },
+    {
+      "name": "GIDDEAN DANU",
+      "value": 3,
+      "colour": "#808080"
+    },
+    {
+      "name": "MACE WINDU",
+      "value": 8,
+      "colour": "#808080"
+    },
+    {
+      "name": "CAPTAIN TYPHO",
+      "value": 4,
+      "colour": "#808080"
+    },
+    {
+      "name": "CLONE COMMANDER GREE",
+      "value": 5,
+      "colour": "#808080"
+    },
+    {
+      "name": "CLONE COMMANDER CODY",
+      "value": 5,
+      "colour": "#808080"
+    },
+    {
+      "name": "JAR JAR",
+      "value": 3,
+      "colour": "#9a9a00"
+    },
+    {
+      "name": "ON MEDON",
+      "value": 4,
+      "colour": "#808080"
+    },
+    {
+      "name": "NUTE GUNRAY",
+      "value": 6,
+      "colour": "#808080"
+    },
+    {
+      "name": "PLO KOON",
+      "value": 3,
+      "colour": "#808080"
+    },
+    {
+      "name": "CAPTAIN ANTILLES",
+      "value": 4,
+      "colour": "#808080"
+    },
+    {
+      "name": "DARTH VADER",
+      "value": 5,
+      "colour": "#000000"
+    },
+    {
+      "name": "QUI-GON",
+      "value": 3,
+      "colour": "#4f4fb1"
+    }
+  ],
+  "links": [
+    {
+      "source": 5,
+      "target": 0,
+      "value": 4
+    },
+    {
+      "source": 6,
+      "target": 0,
+      "value": 2
+    },
+    {
+      "source": 2,
+      "target": 0,
+      "value": 12
+    },
+    {
+      "source": 1,
+      "target": 0,
+      "value": 9
+    },
+    {
+      "source": 4,
+      "target": 0,
+      "value": 3
+    },
+    {
+      "source": 8,
+      "target": 0,
+      "value": 5
+    },
+    {
+      "source": 7,
+      "target": 0,
+      "value": 3
+    },
+    {
+      "source": 14,
+      "target": 0,
+      "value": 1
+    },
+    {
+      "source": 9,
+      "target": 0,
+      "value": 4
+    },
+    {
+      "source": 0,
+      "target": 10,
+      "value": 1
+    },
+    {
+      "source": 1,
+      "target": 2,
+      "value": 28
+    },
+    {
+      "source": 2,
+      "target": 3,
+      "value": 2
+    },
+    {
+      "source": 1,
+      "target": 3,
+      "value": 2
+    },
+    {
+      "source": 5,
+      "target": 2,
+      "value": 4
+    },
+    {
+      "source": 6,
+      "target": 2,
+      "value": 1
+    },
+    {
+      "source": 1,
+      "target": 5,
+      "value": 14
+    },
+    {
+      "source": 1,
+      "target": 6,
+      "value": 1
+    },
+    {
+      "source": 6,
+      "target": 5,
+      "value": 1
+    },
+    {
+      "source": 4,
+      "target": 2,
+      "value": 2
+    },
+    {
+      "source": 1,
+      "target": 4,
+      "value": 1
+    },
+    {
+      "source": 1,
+      "target": 7,
+      "value": 2
+    },
+    {
+      "source": 1,
+      "target": 8,
+      "value": 4
+    },
+    {
+      "source": 7,
+      "target": 2,
+      "value": 7
+    },
+    {
+      "source": 8,
+      "target": 2,
+      "value": 3
+    },
+    {
+      "source": 7,
+      "target": 5,
+      "value": 3
+    },
+    {
+      "source": 8,
+      "target": 5,
+      "value": 2
+    },
+    {
+      "source": 7,
+      "target": 8,
+      "value": 3
+    },
+    {
+      "source": 7,
+      "target": 9,
+      "value": 5
+    },
+    {
+      "source": 1,
+      "target": 9,
+      "value": 9
+    },
+    {
+      "source": 1,
+      "target": 10,
+      "value": 5
+    },
+    {
+      "source": 7,
+      "target": 11,
+      "value": 2
+    },
+    {
+      "source": 7,
+      "target": 12,
+      "value": 2
+    },
+    {
+      "source": 7,
+      "target": 13,
+      "value": 1
+    },
+    {
+      "source": 11,
+      "target": 9,
+      "value": 2
+    },
+    {
+      "source": 11,
+      "target": 12,
+      "value": 2
+    },
+    {
+      "source": 11,
+      "target": 13,
+      "value": 1
+    },
+    {
+      "source": 12,
+      "target": 9,
+      "value": 2
+    },
+    {
+      "source": 13,
+      "target": 9,
+      "value": 1
+    },
+    {
+      "source": 13,
+      "target": 12,
+      "value": 1
+    },
+    {
+      "source": 1,
+      "target": 14,
+      "value": 5
+    },
+    {
+      "source": 14,
+      "target": 10,
+      "value": 4
+    },
+    {
+      "source": 14,
+      "target": 2,
+      "value": 3
+    },
+    {
+      "source": 2,
+      "target": 10,
+      "value": 11
+    },
+    {
+      "source": 15,
+      "target": 9,
+      "value": 2
+    },
+    {
+      "source": 8,
+      "target": 9,
+      "value": 5
+    },
+    {
+      "source": 8,
+      "target": 15,
+      "value": 2
+    },
+    {
+      "source": 1,
+      "target": 15,
+      "value": 1
+    },
+    {
+      "source": 16,
+      "target": 10,
+      "value": 1
+    },
+    {
+      "source": 2,
+      "target": 9,
+      "value": 6
+    },
+    {
+      "source": 17,
+      "target": 2,
+      "value": 2
+    },
+    {
+      "source": 1,
+      "target": 18,
+      "value": 1
+    },
+    {
+      "source": 5,
+      "target": 18,
+      "value": 1
+    },
+    {
+      "source": 2,
+      "target": 19,
+      "value": 1
+    },
+    {
+      "source": 4,
+      "target": 20,
+      "value": 1
+    },
+    {
+      "source": 5,
+      "target": 9,
+      "value": 4
+    },
+    {
+      "source": 1,
+      "target": 17,
+      "value": 1
+    },
+    {
+      "source": 17,
+      "target": 14,
+      "value": 1
+    },
+    {
+      "source": 17,
+      "target": 10,
+      "value": 1
+    },
+    {
+      "source": 5,
+      "target": 14,
+      "value": 1
+    },
+    {
+      "source": 7,
+      "target": 22,
+      "value": 2
+    },
+    {
+      "source": 7,
+      "target": 10,
+      "value": 6
+    },
+    {
+      "source": 5,
+      "target": 20,
+      "value": 1
+    },
+    {
+      "source": 24,
+      "target": 10,
+      "value": 1
+    },
+    {
+      "source": 7,
+      "target": 24,
+      "value": 1
+    },
+    {
+      "source": 8,
+      "target": 10,
+      "value": 1
+    },
+    {
+      "source": 23,
+      "target": 5,
+      "value": 1
+    },
+    {
+      "source": 8,
+      "target": 22,
+      "value": 1
+    }
+  ]
+}
