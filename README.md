@@ -8,7 +8,8 @@ The folder `data` contains:
 - `characters.csv`: extracted list of named characters that appeared in the screenplays. 
 - `aliases.csv`: csv file with alternative names for some of the characters
 - `charactersPerScene.csv`: each line contains name of a character followed by the relative 
-   times when the character is mentioned in the screenplay. The values were computed as 
+   times when the character is mentioned in the screenplay. I used this data to generate character timelines. 
+   The values were computed as 
       
        episode number + scene number/number of scenes in episode
    
