@@ -2,7 +2,7 @@
   "nodes": [
     {
       "name": "R2-D2",
-      "value": 16,
+      "value": 15,
       "colour": "#bde0f6"
     },
     {
@@ -170,22 +170,12 @@
     {
       "source": 12,
       "target": 0,
-      "value": 8
-    },
-    {
-      "source": 1,
-      "target": 0,
-      "value": 1
-    },
-    {
-      "source": 10,
-      "target": 0,
-      "value": 2
+      "value": 7
     },
     {
       "source": 11,
       "target": 0,
-      "value": 6
+      "value": 7
     },
     {
       "source": 23,

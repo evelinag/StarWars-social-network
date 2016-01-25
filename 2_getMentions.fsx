@@ -8,11 +8,19 @@ open System.IO
 open StarWars.ParseScripts
 open System.Text.RegularExpressions
 
-// Extract interactions between characters from the individual scripts
+/// Extract interactions between characters from the individual scripts
 let characters = 
-    File.ReadAllLines(__SOURCE_DIRECTORY__ + "/data/characters.csv") 
-    |> Array.append (Seq.append aliasDict.Keys aliasDict.Values |> Array.ofSeq)
+    let stdCharacters = File.ReadAllLines(__SOURCE_DIRECTORY__ + "/data/characters.csv") 
+    let allNames =
+        [| 0 .. scriptUrls.Length-1 |]
+        |> Array.collect
+            (fun ep -> 
+                Seq.append aliasesForEpisodes.[ep].Keys aliasesForEpisodes.[ep].Values 
+                |> Array.ofSeq)
+    stdCharacters 
+    |> Array.append allNames 
     |> Array.map (fun s -> s.ToLower())
+    |> Array.distinct
 
 // Some names occur also as a part of other words - check for that as well
 // problematic names: Han, Sola
@@ -65,17 +73,24 @@ let getMentionsNetwork includeRobots countThreshold episodeIdx =
             let lscene = 
                 scene |> Array.map (fun s -> s.ToLower()) // some names contain lower-case characters
             characters
+            |> Array.filter (characterCheck episodeIdx)
             |> Array.map (fun name -> 
                 lscene 
                 |> Array.map (fun contents -> if containsName contents name then Some name else None )
                 |> Array.choose id)
             |> Array.concat
             |> Array.choose (fun name -> 
-                let newName = mapName (name.ToUpper())
+                let newName = mapName episodeIdx (name.ToUpper())
                 if includeRobots then Some newName
-                elif newName = "R2-D2" || newName = "C-3PO" then None else Some newName)
-            |> Seq.distinct
-            |> Seq.toArray )
+                elif 
+                    newName = "R2-D2" 
+                    || newName = "C-3PO"
+                    || newName = "BB-8"
+                    then None else Some newName)
+            |> Array.distinct )
+//        |> List.mapi (fun i cs -> 
+//            if (cs |> Array.contains "SNOKE") && (cs |> Array.contains "CHEWBACCA") then printfn "%d" i 
+//            cs)
         |> List.filter (Array.isEmpty >> not)
 
     // Create weighted network
@@ -106,6 +121,7 @@ let generateMentionsNetwork episodeIdx =
         getJsonNetwork nodes links)
 
 for i in 0..5 do generateMentionsNetwork i
+generateMentionsNetwork 6
 
 // =====================================================================
 // Generate global network
@@ -114,7 +130,7 @@ let includeRobots = true
 let countThreshold = 0
 let linkThreshold = 0
 let nodes, links = 
-    [0..5] |> List.map (getMentionsNetwork includeRobots 0) |> List.unzip
+    [0..6] |> List.map (getMentionsNetwork includeRobots 0) |> List.unzip
 let summarizeEpisodes data =
     data 
     |> Seq.collect id 
@@ -158,12 +174,13 @@ let getSceneAppearances episodeIdx =
         let lscene = 
             scene |> Array.map (fun s -> s.ToLower()) // some names contain lower-case characters
         characters
+        |> Array.filter (characterCheck episodeIdx)
         |> Array.map (fun name -> 
             lscene 
             |> Array.map (fun contents -> if containsName contents name then Some name else None )
             |> Array.choose id)
         |> Array.concat
-        |> Array.map (fun name -> mapName (name.ToUpper()))
+        |> Array.map (fun name -> mapName episodeIdx (name.ToUpper()))
         |> Seq.distinct 
         |> Seq.map (fun name -> sceneIdx, name)
         |> List.ofSeq)
@@ -171,7 +188,7 @@ let getSceneAppearances episodeIdx =
     totalScenes
 
 let appearances = 
-    [0 .. 5]
+    [0 .. 6]
     |> List.map getSceneAppearances
     |> List.mapi (fun episodeIdx (sceneAppearances, total) ->
         sceneAppearances 

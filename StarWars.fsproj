@@ -8,11 +8,12 @@
     <ProjectGuid>331e2b2c-eee0-460d-a28c-82f93c58237e</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>FsAdvent</RootNamespace>
-    <AssemblyName>FsAdvent</AssemblyName>
+    <AssemblyName>StarWars</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <TargetFSharpCoreVersion>4.3.1.0</TargetFSharpCoreVersion>
+    <TargetFSharpCoreVersion>4.4.0.0</TargetFSharpCoreVersion>
     <Name>FsAdvent</Name>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -61,16 +62,18 @@
   </Target>
   -->
   <ItemGroup>
+    <Content Include="App.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Google.DataTable.Net.Wrapper.XML">
       <Paket>True</Paket>
     </Content>
     <Compile Include="parseScripts.fs" />
-    <Compile Include="getNames.fsx" />
-    <None Include="sceneData.fsx" />
-    <None Include="getMentions.fsx" />
-    <None Include="getInteractions.fsx" />
-    <None Include="timelines.fsx" />
-    <None Include="centrality.fsx" />
+    <Compile Include="1_getNames.fsx" />
+    <None Include="2_getMentions.fsx" />
+    <None Include="3_getInteractions.fsx" />
+    <None Include="4_timelines.fsx" />
+    <None Include="5_centrality.fsx" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />

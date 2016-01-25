@@ -2,7 +2,7 @@
   "nodes": [
     {
       "name": "R2-D2",
-      "value": 28,
+      "value": 27,
       "colour": "#bde0f6"
     },
     {
@@ -81,7 +81,7 @@
       "colour": "#808080"
     },
     {
-      "name": "ACKBAR",
+      "name": "ADMIRAL ACKBAR",
       "value": 10,
       "colour": "#808080"
     },
@@ -103,34 +103,29 @@
   ],
   "links": [
     {
-      "source": 4,
-      "target": 0,
-      "value": 14
-    },
-    {
       "source": 1,
       "target": 0,
       "value": 8
     },
     {
+      "source": 4,
+      "target": 0,
+      "value": 14
+    },
+    {
       "source": 11,
       "target": 0,
-      "value": 3
+      "value": 2
     },
     {
       "source": 6,
       "target": 0,
-      "value": 4
+      "value": 2
     },
     {
       "source": 7,
       "target": 0,
-      "value": 12
-    },
-    {
-      "source": 5,
-      "target": 0,
-      "value": 1
+      "value": 8
     },
     {
       "source": 9,
@@ -140,20 +135,10 @@
     {
       "source": 10,
       "target": 0,
-      "value": 11
+      "value": 12
     },
     {
-      "source": 0,
-      "target": 13,
-      "value": 1
-    },
-    {
-      "source": 3,
-      "target": 0,
-      "value": 1
-    },
-    {
-      "source": 12,
+      "source": 15,
       "target": 0,
       "value": 1
     },
@@ -164,18 +149,8 @@
     },
     {
       "source": 1,
-      "target": 0,
-      "value": 8
-    },
-    {
-      "source": 1,
       "target": 11,
-      "value": 7
-    },
-    {
-      "source": 1,
-      "target": 6,
-      "value": 3
+      "value": 6
     },
     {
       "source": 1,
@@ -185,16 +160,16 @@
     {
       "source": 1,
       "target": 7,
-      "value": 15
+      "value": 10
     },
     {
       "source": 1,
       "target": 10,
-      "value": 12
+      "value": 14
     },
     {
       "source": 1,
-      "target": 3,
+      "target": 15,
       "value": 1
     },
     {

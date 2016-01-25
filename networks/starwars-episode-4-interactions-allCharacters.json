@@ -7,7 +7,7 @@
     },
     {
       "name": "CHEWBACCA",
-      "value": 31,
+      "value": 30,
       "colour": "#A0522D"
     },
     {
@@ -113,19 +113,34 @@
   ],
   "links": [
     {
+      "source": 1,
+      "target": 0,
+      "value": 3
+    },
+    {
       "source": 2,
       "target": 0,
       "value": 17
     },
     {
+      "source": 8,
+      "target": 0,
+      "value": 1
+    },
+    {
       "source": 3,
       "target": 0,
-      "value": 13
+      "value": 14
+    },
+    {
+      "source": 9,
+      "target": 0,
+      "value": 1
     },
     {
       "source": 10,
       "target": 0,
-      "value": 6
+      "value": 4
     },
     {
       "source": 7,
@@ -133,34 +148,29 @@
       "value": 5
     },
     {
-      "source": 13,
-      "target": 0,
-      "value": 5
-    },
-    {
-      "source": 1,
-      "target": 0,
-      "value": 3
-    },
-    {
-      "source": 16,
+      "source": 6,
       "target": 0,
       "value": 1
     },
     {
+      "source": 13,
+      "target": 0,
+      "value": 6
+    },
+    {
       "source": 1,
       "target": 10,
-      "value": 7
+      "value": 4
     },
     {
       "source": 2,
       "target": 1,
-      "value": 5
+      "value": 4
     },
     {
       "source": 1,
       "target": 3,
-      "value": 16
+      "value": 14
     },
     {
       "source": 1,
@@ -169,23 +179,8 @@
     },
     {
       "source": 1,
-      "target": 0,
-      "value": 4
-    },
-    {
-      "source": 1,
       "target": 7,
-      "value": 11
-    },
-    {
-      "source": 1,
-      "target": 4,
-      "value": 1
-    },
-    {
-      "source": 1,
-      "target": 16,
-      "value": 1
+      "value": 8
     },
     {
       "source": 5,

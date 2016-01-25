@@ -12,7 +12,7 @@ open StarWars.ParseScripts
 
 let allNames =
   scriptUrls
-  |> List.map (fun (episode, url) ->
+  |> List.mapi (fun episodeIdx (episode, url) ->
     let script = getScript url
     let scriptParts = script.Elements()
 
@@ -25,9 +25,10 @@ let allNames =
     let scenes = splitByScene mainScript [] 
 
     // Extract names appearing in each scene
-    scenes |> List.map getCharacterNames |> Array.concat )
+    scenes |> List.map (getCharacterNames episodeIdx) |> Array.concat )
   |> Array.concat
-  |> Seq.countBy id
+  |> filterClutterTerms
+  |> Array.countBy id
   |> Seq.filter (snd >> (<) 1)  // filter out characters that speak in only one scene
 
 for (name, count) in allNames do printfn "%s - %d" name count

@@ -96,7 +96,7 @@
       "colour": "#9a9a00"
     },
     {
-      "name": "ON MEDON",
+      "name": "TION MEDON",
       "value": 4,
       "colour": "#808080"
     },
@@ -130,11 +130,6 @@
     {
       "source": 5,
       "target": 0,
-      "value": 4
-    },
-    {
-      "source": 6,
-      "target": 0,
       "value": 2
     },
     {
@@ -148,11 +143,6 @@
       "value": 9
     },
     {
-      "source": 4,
-      "target": 0,
-      "value": 3
-    },
-    {
       "source": 8,
       "target": 0,
       "value": 5
@@ -160,12 +150,7 @@
     {
       "source": 7,
       "target": 0,
-      "value": 3
-    },
-    {
-      "source": 14,
-      "target": 0,
-      "value": 1
+      "value": 4
     },
     {
       "source": 9,
@@ -175,6 +160,11 @@
     {
       "source": 0,
       "target": 10,
+      "value": 1
+    },
+    {
+      "source": 22,
+      "target": 0,
       "value": 1
     },
     {

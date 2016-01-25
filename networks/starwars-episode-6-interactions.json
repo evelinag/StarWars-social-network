@@ -38,7 +38,7 @@
     {
       "name": "HAN",
       "value": 32,
-      "colour": "#F5DEB3"
+      "colour": "#ff9400"
     },
     {
       "name": "LEIA",
@@ -71,7 +71,7 @@
       "colour": "#808080"
     },
     {
-      "name": "ACKBAR",
+      "name": "ADMIRAL ACKBAR",
       "value": 9,
       "colour": "#808080"
     },

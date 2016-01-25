@@ -108,19 +108,19 @@
   ],
   "links": [
     {
+      "source": 1,
+      "target": 0,
+      "value": 5
+    },
+    {
       "source": 6,
       "target": 0,
       "value": 10
     },
     {
-      "source": 1,
-      "target": 0,
-      "value": 7
-    },
-    {
       "source": 2,
       "target": 0,
-      "value": 11
+      "value": 7
     },
     {
       "source": 3,
@@ -130,32 +130,12 @@
     {
       "source": 5,
       "target": 0,
-      "value": 7
-    },
-    {
-      "source": 0,
-      "target": 18,
-      "value": 3
-    },
-    {
-      "source": 8,
-      "target": 0,
-      "value": 1
-    },
-    {
-      "source": 12,
-      "target": 0,
-      "value": 1
-    },
-    {
-      "source": 19,
-      "target": 0,
-      "value": 1
+      "value": 5
     },
     {
       "source": 20,
       "target": 0,
-      "value": 2
+      "value": 1
     },
     {
       "source": 1,
@@ -165,27 +145,27 @@
     {
       "source": 6,
       "target": 1,
-      "value": 19
-    },
-    {
-      "source": 1,
-      "target": 0,
-      "value": 6
+      "value": 21
     },
     {
       "source": 1,
       "target": 2,
-      "value": 6
+      "value": 5
     },
     {
       "source": 1,
       "target": 5,
-      "value": 22
+      "value": 19
+    },
+    {
+      "source": 1,
+      "target": 4,
+      "value": 1
     },
     {
       "source": 1,
       "target": 20,
-      "value": 12
+      "value": 9
     },
     {
       "source": 1,

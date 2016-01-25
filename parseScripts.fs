@@ -12,6 +12,7 @@ let scriptUrls =
       "Episode IV: A New Hope", "http://www.imsdb.com/scripts/Star-Wars-A-New-Hope.html"
       "Episode V: The Empire Strikes Back", "http://www.imsdb.com/scripts/Star-Wars-The-Empire-Strikes-Back.html"
       "Episode VI: Return of the Jedi", "http://www.imsdb.com/scripts/Star-Wars-Return-of-the-Jedi.html"
+      "Episode VII: The Force Awakens", "http://www.imsdb.com/scripts/Star-Wars-The-Force-Awakens.html"
     ]
 
 // load film script from url
@@ -47,7 +48,7 @@ let rec splitByScene (script : string[]) scenes =
 // Extract names of characters that speak in scenes. 
 // A) Extract names of characters in the format "[name]:"
 let getFormat1Names text =
-    let pattern = "[/A-Z0-9 -]+ *:"   // we need '-' for Obi-Wan etc
+    let pattern = "[/A-Z0-9 -]+ *:"   // we need to match '-' for Obi-Wan etc
     let matches = Regex.Matches(text, pattern)
     let names = 
         seq { for m in matches -> m.Value }
@@ -67,26 +68,48 @@ let getFormat2Names text =
 // Some characters have multiple names - map their names onto pre-defined values
 // specified in 'aliases.csv'
 [<Literal>]
-let aliasFile = __SOURCE_DIRECTORY__ + "/data/aliases.csv"
+let aliasFile = __SOURCE_DIRECTORY__ + "\\data\\aliases.csv"
 type Aliases = CsvProvider<aliasFile>
 
+open Microsoft.FSharp.Reflection
+
 /// Dictinary for translating character names between aliases
-let aliasDict = 
+let aliasDict episodeIdx = 
     Aliases.Load(aliasFile).Rows 
-    |> Seq.map (fun row -> row.Alias, row.Name)
+    |> Seq.choose (fun row -> 
+        // extract contents of a tuple as an array of obj values
+        if (FSharpValue.GetTupleFields(row).[episodeIdx + 2]) :?> bool
+        then Some (row.Alias, row.Name)
+        else None)
     |> dict
 
+let aliasesForEpisodes = Array.init scriptUrls.Length aliasDict
+
 /// Some characters have multiple names - map their names onto pre-defined values
-let mapName name = if aliasDict.ContainsKey(name) then aliasDict.[name] else name
+let mapName episodeIdx name = 
+    if aliasesForEpisodes.[episodeIdx].ContainsKey(name) then 
+        aliasesForEpisodes.[episodeIdx].[name] 
+    else name
 
 /// Extract character names from the given scene
-let getCharacterNames (scene: string []) =
-    let names1 = scene |> Seq.collect getFormat1Names 
-    let names2 = scene |> Seq.collect getFormat2Names 
-    Seq.append names1 names2
-    |> Seq.map mapName
-    |> Seq.distinct
-    |> Array.ofSeq
+let getCharacterNames episodeIdx (scene: string []) =
+    let names1 = scene |> Array.collect getFormat1Names 
+    let names2 = scene |> Array.collect getFormat2Names 
+    Array.append names1 names2
+    |> Array.map (mapName episodeIdx)
+    |> Array.distinct
+
+/// Script for Episode 7 contains a log of expressive terms that are not characters
+let filterClutterTerms names =
+    let expressions = ["S POV"; "CONTINUED"; "CUT TO"; "WIDE SHOT"; "HIM"] |> set
+    names |> Array.filter (fun name -> not(expressions.Contains name))
+
+/// Filter characters with names that also appear as general words in other episodes
+let characterCheck episodeIdx name =
+    match episodeIdx, name with
+    | 6, "mace" -> false    // MACE = MACE WINDU vs MACE = MACE wielding stormtrooper
+    | _ -> true
+
 
 ///==============================================================================
 
@@ -108,4 +131,10 @@ let getCharacterColour name =
     | "YODA" -> "#9ACD32"
     | "PADME" -> "#DDA0DD"
     | "JAR JAR" -> "#9a9a00"
+    | "REY" -> "#ffe0af"
+    | "KYLO REN" -> "#000000"
+    | "SNOKE" -> "#191970"
+    | "FINN" -> "#07b19f"
+    | "POE" -> "#a15bea"
+    | "BB-8" -> "#eb5d00"
     | _ -> "#808080"
