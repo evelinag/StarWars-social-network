@@ -3,6 +3,8 @@
 This repository contains the code I used to create my blog post on the 
 [Star Wars social network](http://evelinag.com/blog/2015/12-15-star-wars-social-network/index.html).
 
+*Update*: I added the 7th episode Star Wars: The Force Awakens and included more network analysis [on my blog](http://evelinag.com/blog/2016/01-25-social-network-force-awakens/index.html).
+
 The folder `data` contains:
 
 - `characters.csv`: extracted list of named characters that appeared in the screenplays. 
