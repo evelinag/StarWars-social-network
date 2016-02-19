@@ -156,7 +156,7 @@ File.WriteAllText(__SOURCE_DIRECTORY__ + "/networks/starwars-full-mentions.json"
 /// Get indices of scenes where individual characters appear (where they are mentioned).
 let getSceneAppearances episodeIdx = 
     let episode, url = scriptUrls.[episodeIdx]
-    let script = getScript url
+    let script = getScriptElement url
     let scriptParts = script.Elements()
 
     let mainScript = 
