@@ -13,19 +13,8 @@ open StarWars.ParseScripts
 let allNames =
   scriptUrls
   |> List.mapi (fun episodeIdx (episode, url) ->
-    let script = getScript url
-    let scriptParts = script.Elements()
-
-    let mainScript = 
-        scriptParts
-        |> Seq.map (fun element -> element.ToString())
-        |> Seq.toArray
-
-    // Now every element of the list is a single scene
-    let scenes = splitByScene mainScript [] 
-
-    // Extract names appearing in each scene
-    scenes |> List.map (getCharacterNames episodeIdx) |> Array.concat )
+      getCharactersByScene url
+      |> Array.concat)
   |> Array.concat
   |> filterClutterTerms
   |> Array.countBy id

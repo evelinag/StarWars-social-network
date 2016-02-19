@@ -18,7 +18,7 @@ let scriptUrls =
 // load film script from url
 // script is either inside <td class="srctext"></td>
 // or inside <pre></pre>
-let getScript (url:string) =
+let getScriptElement (url:string) =
     let extract_td (node:HtmlNode) =
         if node.Name() <> "td" then false
         else 
@@ -30,6 +30,97 @@ let getScript (url:string) =
     if Seq.isEmpty scriptPage then
         HtmlDocument.Load(url).Descendants(extract_td) |> Seq.head
     else scriptPage |> Seq.head
+
+// Active pattern to parse the contents of the script
+let (|SceneTitle|Name|Word|) (text:string) =
+    let scenePattern = "[ 0-9]*(INT.|EXT.)[ A-Z0-9]"
+    let namePattern = "^[/A-Z0-9]+[-]*[/A-Z0-9 ]*[-]*[/A-Z0-9 ]+$"
+    if Regex.Match(text, scenePattern).Success then
+        SceneTitle text
+    elif Regex.Match(text, namePattern).Success then
+        Name text
+    else Word
+
+let (|MultipleNames|_|) (text:string) =
+    let namePattern = "[/A-Z0-9 -]+ *:"
+    let results = Regex.Matches(text,namePattern)    
+    if results.Count > 0 then
+        let names = 
+            [ for r in results -> r.Value.Trim(": ".ToCharArray())]
+        Some names
+    else 
+        None
+
+/// Recursively parse the script, extract the character names for each scene
+let rec parseScenes sceneAcc characterAcc (items: string list) =
+   match items with
+   | item::rest ->
+       match item with
+       | SceneTitle title -> 
+            // add the finished scene to the scene accumulator
+            let fullScene = List.rev characterAcc
+            parseScenes (fullScene::sceneAcc) [] rest
+       | Name name -> 
+            // add character's name to the character accumulator
+            parseScenes sceneAcc (name::characterAcc) rest
+       | Word -> // do nothing
+            parseScenes sceneAcc characterAcc rest
+   | [] -> List.rev sceneAcc        
+
+/// Alternative function for parsing the script file
+
+let getAlternativeNames text =
+    match text with
+    | MultipleNames names -> names
+    | _ -> []
+
+let rec splitAlternativeScript sceneAcc (sceneTitles: string list) (text:string) =
+    match sceneTitles with
+    | scene :: rest ->
+        let idx = text.IndexOf(scene)
+        let currentScene = text.[0..idx-1] 
+        let characters = 
+            match currentScene with 
+            | MultipleNames names -> names
+            | _ -> []
+        splitAlternativeScript (characters::sceneAcc) rest text.[idx + scene.Length ..]
+    | [] -> 
+        // return the list of scenes, split into individual words
+        List.rev sceneAcc 
+
+let isSceneTitle (text:string) = text.Contains("INT.") || text.Contains("EXT.")
+
+// let episode = getScriptElement htmlScripts.[2]  // <- problematic episodes: 0
+// let episode = getScriptElement htmlScripts.[6]
+// Parse the scripts
+let getCharactersByScene episodeUrl = 
+    let episodeHtml = getScriptElement episodeUrl
+    // extract all script elements in bold
+    // this works for MOST episodes
+    let bItems = 
+        episodeHtml.Elements("b") 
+        |> List.map (fun x -> x.InnerText().Trim())
+
+    let charactersByScene = 
+        parseScenes [] [] bItems
+        |> List.filter (fun characters -> not characters.IsEmpty)
+        // this still contains some other stuff -> filter by list of characters
+
+    let nSpeaking = List.concat charactersByScene |> List.length
+
+    let characters = 
+        // check if the characters were extracted correctly
+        if (float nSpeaking)/(float bItems.Length) >= 0.2 then
+            charactersByScene
+        else
+           // bItems contains just scene breaks - use them to split the screenplay
+           // and extract the character names
+           let text = episodeHtml.ToString()
+           let sceneTitles = bItems |> List.filter isSceneTitle
+           splitAlternativeScript [] sceneTitles text 
+    characters
+    |> List.map  (List.distinct >> Array.ofList)
+    |> Array.ofList
 
 // split the script by scene
 // each scene starts with either INT. or EXT. 
@@ -45,30 +136,10 @@ let rec splitByScene (script : string[]) scenes =
         splitByScene remainingScenes (currentScene :: scenes)
     | None -> script :: scenes
 
-// Extract names of characters that speak in scenes. 
-// A) Extract names of characters in the format "[name]:"
-let getFormat1Names text =
-    let pattern = "[/A-Z0-9 -]+ *:"   // we need to match '-' for Obi-Wan etc
-    let matches = Regex.Matches(text, pattern)
-    let names = 
-        seq { for m in matches -> m.Value }
-        |> Seq.map (fun name -> name.Trim([|' '; ':'|]))
-        |> Array.ofSeq
-    names
-
-// B) Extract names of characters in the format "<b> [name] </b>"
-let getFormat2Names text =
-    let pattern = "<b>[ ]*[/A-Z0-9 -]+[ ]*</b>"
-    let m = Regex.Match(text, pattern)
-    if m.Success then
-        let name = m.Value.Replace("<b>","").Replace("</b>","").Trim()
-        [| name |]
-    else [||]
-
 // Some characters have multiple names - map their names onto pre-defined values
 // specified in 'aliases.csv'
 [<Literal>]
-let aliasFile = __SOURCE_DIRECTORY__ + "\\data\\aliases.csv"
+let aliasFile = __SOURCE_DIRECTORY__ + "/data/aliases.csv"
 type Aliases = CsvProvider<aliasFile>
 
 open Microsoft.FSharp.Reflection
@@ -90,14 +161,6 @@ let mapName episodeIdx name =
     if aliasesForEpisodes.[episodeIdx].ContainsKey(name) then 
         aliasesForEpisodes.[episodeIdx].[name] 
     else name
-
-/// Extract character names from the given scene
-let getCharacterNames episodeIdx (scene: string []) =
-    let names1 = scene |> Array.collect getFormat1Names 
-    let names2 = scene |> Array.collect getFormat2Names 
-    Array.append names1 names2
-    |> Array.map (mapName episodeIdx)
-    |> Array.distinct
 
 /// Script for Episode 7 contains a log of expressive terms that are not characters
 let filterClutterTerms names =

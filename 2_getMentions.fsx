@@ -55,7 +55,7 @@ let getJsonNetwork nodes links =
 
 let getMentionsNetwork includeRobots countThreshold episodeIdx = 
     let episode, url = scriptUrls.[episodeIdx]
-    let script = getScript url
+    let script = getScriptElement url
     let scriptParts = script.Elements()
 
     let mainScript = 

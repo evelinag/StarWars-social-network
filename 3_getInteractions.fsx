@@ -50,21 +50,11 @@ let getJsonNetwork nodes links =
 
 let getInteractionNetwork countThreshold episodeIdx = 
     let episode, url = scriptUrls.[episodeIdx]
-    let script = getScript url
-    let scriptParts = script.Elements()
-
-    let mainScript = 
-        scriptParts
-        |> Seq.map (fun element -> element.ToString())
-        |> Seq.toArray
-
-    // Now every element of the list is a single scene
-    let scenes = splitByScene mainScript [] |> List.rev
+    let charactersByScene = getCharactersByScene url
 
     let namesInScenes = 
-        scenes 
-        |> List.map (getCharacterNames episodeIdx)
-        |> List.map (fun names -> 
+        charactersByScene
+        |> Array.map (fun names -> 
             names |> Array.filter (fun name -> 
                         characters.Contains name && 
                         characterCheck episodeIdx name ))       
@@ -79,13 +69,13 @@ let getInteractionNetwork countThreshold episodeIdx =
 
     let links = 
         namesInScenes 
-        |> List.collect (fun names -> 
-            [ for i in 0..names.Length - 1 do 
+        |> Array.collect (fun names -> 
+            [| for i in 0..names.Length - 1 do 
                 for j in i+1..names.Length - 1 do
                   let n1 = names.[i]
                   let n2 = names.[j]
                   if nodeLookup.Contains(n1) && nodeLookup.Contains(n2) then
-                     yield min n1 n2, max n1 n2 ])
+                     yield min n1 n2, max n1 n2 |])
         |> Seq.countBy id
         |> Array.ofSeq
 
