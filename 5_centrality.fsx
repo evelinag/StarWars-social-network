@@ -28,16 +28,20 @@ let mergeAnakin = true
 let graph =
     let edges = 
         links
-        |> Array.collect (fun link ->
+        |> Array.map (fun link ->
             let n1 = nodeLookup.[link.Source]
             let n2 = nodeLookup.[link.Target]
             if mergeAnakin then 
-                if n1 = "ANAKIN" then [| "DARTH VADER"; n2 |]
-                elif n2 = "ANAKIN" then [| n1; "DARTH VADER" |]
+                if n1 = "ANAKIN" then 
+                    if "DARTH VADER" < n2 then [| "DARTH VADER"; n2 |] else [| n2; "DARTH VADER" |]
+                elif n2 = "ANAKIN" then 
+                    if "DARTH VADER" < n1 then [| "DARTH VADER"; n1 |] else [| n1; "DARTH VADER" |]
                 else
-                 [| n1 ; n2 |]
+                    [| n1; n2 |]
             else
-                 [| n1 ; n2 |] )
+                  [| n1; n2 |] )
+        |> Array.distinct   // discard with duplicated edges
+        |> Array.concat
     namedParams["edges", box edges; "dir", box "undirected"]
     |> R.graph
 
