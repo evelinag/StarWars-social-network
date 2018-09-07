@@ -52,3 +52,22 @@ The other files contain the code used to generate the data files and the plots.
 * `interactions.html` and `episode-interactions.html` contain the D3.js code to visualize the networks.
 * The rest of the code is in F# and uses [FsLab](http://fslab.org/)
 * To run the code, use [paket reference manager](http://fsprojects.github.io/Paket/) to download all the dependencies
+
+
+## Using the social network data
+
+For details please refer to the associated repository [evelinag/star-wars-network-data](https://github.com/evelinag/star-wars-network-data) containing only the dataset.
+
+### Citing the dataset
+
+If you use the dataset in your work, please use the following citation:
+
+Gabasova, E. (2016). Star Wars social network. DOI: https://doi.org/10.5281/zenodo.1411479.
+
+    @misc{gabasova_star_wars_2016,
+      author  = {Evelina Gabasova},
+      title   = {{Star Wars social network}},
+      year    = 2016,
+      url     = {https://doi.org/10.5281/zenodo.1411479},
+      doi     = {10.5281/zenodo.1411479}
+     }
